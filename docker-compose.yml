@@ -1,0 +1,24 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-task4}
+      POSTGRES_USER: ${POSTGRES_USER:-task4}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-task4}
+    ports:
+      - "127.0.0.1:${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - task4-postgres:/var/lib/postgresql/data
+
+  app:
+    build: .
+    depends_on:
+      - postgres
+    environment:
+      ConnectionStrings__Default: Host=postgres;Port=5432;Database=${POSTGRES_DB:-task4};Username=${POSTGRES_USER:-task4};Password=${POSTGRES_PASSWORD:-task4}
+      App__BaseUrl: ${APP_BASE_URL:-http://localhost:8080}
+    ports:
+      - "${APP_PORT:-8080}:8080"
+
+volumes:
+  task4-postgres:

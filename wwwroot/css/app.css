@@ -1,0 +1,109 @@
+:root {
+    --app-bg: #f4f6f8;
+    --app-border: #d9e0e7;
+    --app-text: #17202a;
+    --app-muted: #657282;
+}
+
+body {
+    min-height: 100vh;
+    background: var(--app-bg);
+    color: var(--app-text);
+    font-size: 16px;
+    letter-spacing: 0;
+}
+
+.app-container {
+    max-width: 1180px;
+}
+
+.auth-page {
+    min-height: 100dvh;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+}
+
+.auth-panel {
+    width: min(100%, 440px);
+    background: #fff;
+    border: 1px solid var(--app-border);
+    border-radius: 8px;
+    padding: 32px;
+    box-shadow: 0 16px 40px rgba(20, 35, 55, 0.08);
+}
+
+.auth-switch {
+    margin-top: 28px;
+    color: var(--app-muted);
+}
+
+.toolbar {
+    min-height: 60px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 44px;
+}
+
+.btn-sm {
+    min-height: 36px;
+}
+
+.btn-icon {
+    width: 44px;
+    padding-inline: 0;
+}
+
+.table-filter {
+    width: min(100%, 320px);
+}
+
+.user-table th {
+    color: var(--app-muted);
+    font-size: 0.8125rem;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.user-table td,
+.user-table th {
+    padding: 14px 16px;
+}
+
+.select-col {
+    width: 52px;
+    text-align: center;
+}
+
+.form-check-input {
+    cursor: pointer;
+}
+
+.font-tabular {
+    font-variant-numeric: tabular-nums;
+}
+
+.selection-counter {
+    min-width: 76px;
+}
+
+@media (max-width: 576px) {
+    .auth-page {
+        padding: 16px;
+        place-items: start center;
+    }
+
+    .auth-panel {
+        padding: 24px;
+    }
+
+    .selection-counter {
+        width: 100%;
+        padding-top: 4px;
+    }
+}

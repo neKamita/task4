@@ -1,0 +1,48 @@
+@model LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+    Layout = "_Layout";
+}
+
+<div class="auth-page">
+    <section class="auth-panel">
+        <p class="text-uppercase text-secondary small fw-semibold mb-1">User management</p>
+        <h1 class="h3 mb-4">Sign in</h1>
+
+        @if (Context.Request.Query["message"] == "blocked")
+        {
+            <div class="alert alert-warning">Your account was blocked. You were signed out.</div>
+        }
+        @if (Context.Request.Query["message"] == "deleted")
+        {
+            <div class="alert alert-warning">Your account was deleted. You were signed out.</div>
+        }
+        @if (Context.Request.Query["message"] == "session")
+        {
+            <div class="alert alert-warning">Your account is blocked or deleted. Login again with another account.</div>
+        }
+
+        <form asp-action="Login" method="post" class="vstack gap-3">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div>
+                <label asp-for="Email" class="form-label"></label>
+                <div class="input-group">
+                    <input asp-for="Email" class="form-control" autocomplete="email" autofocus>
+                    <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                </div>
+                <span asp-validation-for="Email" class="text-danger small"></span>
+            </div>
+            <div>
+                <label asp-for="Password" class="form-label"></label>
+                <div class="input-group">
+                    <input asp-for="Password" type="password" class="form-control" autocomplete="current-password">
+                    <span class="input-group-text"><i class="bi bi-key"></i></span>
+                </div>
+                <span asp-validation-for="Password" class="text-danger small"></span>
+            </div>
+            <button class="btn btn-primary btn-lg w-100" type="submit">Sign in</button>
+        </form>
+
+        <p class="auth-switch mb-0">No account? <a asp-action="Register">Create one</a></p>
+    </section>
+</div>
