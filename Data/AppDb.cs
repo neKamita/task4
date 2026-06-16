@@ -57,7 +57,7 @@ public class AppDb
             user.Id = (int)(await command.ExecuteScalarAsync() ?? 0);
             return user;
         }
-        catch (PostgresException ex) when (ex.SqlState == "23505" && ex.ConstraintName == "ux_users_email")
+        catch (PostgresException ex) when (ex.SqlState == PostgresErrorCodes.UniqueViolation && ex.ConstraintName == "ux_users_email")
         {
             throw new DuplicateEmailException();
         }
