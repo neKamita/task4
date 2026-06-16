@@ -91,7 +91,7 @@ public class AccountController : Controller
             var user = await _db.RegisterAsync(model);
             var baseUrl = _config["App:BaseUrl"] ?? $"{Request.Scheme}://{Request.Host}";
             _ = _emailService.SendConfirmationAsync(user, baseUrl);
-            TempData["Success"] = "Registration completed. You can login now. Confirmation link was sent asynchronously.";
+            TempData["Success"] = "Registration completed. You can login now. Verification link was sent to your email.";
             return RedirectToAction("Login");
         }
         catch (DuplicateEmailException)
